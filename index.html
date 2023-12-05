@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="font-family: sans-serif">
+    <h1>Mga Gwapo</h1>
+
+    <span>Enter name:</span>
+    <input type="text" name="" id="name" />
+    <button onclick="add()">Add</button>
+    <span style="margin-left: 50px">Select Item:</span>
+    <select name="" id="option"></select>
+    <button onclick="del()">Delete</button>
+    <ol id="items"></ol>
+
+    <script>
+      function add() {
+        let nameAdd = document.getElementById("name").value;
+        let addToList = document.createTextNode(nameAdd);
+        let li = document.createElement("li");
+        li.appendChild(addToList);
+        document.getElementById("items").appendChild(li);
+
+        option();
+        document.getElementById("name").value = "";
+      }
+
+      function option() {
+        let val = document.getElementsByTagName("option");
+        let optionCount = document.createTextNode(val.length + 1);
+        let option = document.createElement("option");
+        option.setAttribute("value", val.length + 1);
+        option.appendChild(optionCount);
+        document.getElementById("option").appendChild(option);
+      }
+
+      function del() {
+        let val = document.getElementById("option");
+        let intVal = parseInt(val);
+        let del = document.getElementById("items");
+        del.removeChild(del.childNodes[val.value - 1]);
+        let delOp = document.getElementById("option");
+        delOp.removeChild(delOp.lastChild);
+      }
+    </script>
+  </body>
+</html>
